@@ -1,0 +1,152 @@
+ 装饰器
+# def  ceshi(fun):
+#     def ceshi2():
+#         print  "lalal"
+#         print "heheh "
+#         fun()
+#         print "hehe"
+#     return   ceshi2
+# 建立关系，通过@ + 函数名
+# @ceshi
+# def  Func1():
+#     print "Func1"
+# @ceshi
+# def  Func2():
+#     print "Func1"
+# Func1()
+# Func2()
+
+
+#面向对象
+# 类的一个特性：封装
+
+# 定义一个类  Provience 是个类名
+# class  Provience(object):
+    # 这个memo 属于class，因为这个memo是底下函数中所有对象的共同的特性。
+    # 可以通过类来访问，Provience.memo
+    # 这个也是字段，虽然它属于类，他叫做 静态字段
+    # memo =  "共同的特性"
+    # 定义一个函数，函数里面的参数self是必须有的，其他参数可有可无，
+    # 后面的参数说明了这个类中实例的共同的特性
+    # 在类中的 def xxx ---> 叫做方法
+    # 其中的__init__  构造函数
+    # def __init__(self,name,capital,leader,flag):
+
+        # self 参数虽然没有传递，但是在python中自动传了，传递的是SD，
+        #即传递的对象(self=SD)。然后依次赋值给Name，Capital，Leader
+        # 将传过来的参数给封装了，可以理解为赋值。
+        # 在类中的self.xxx   ----> 叫做字段，与上面的memo相比他属于动态字段
+        # self.Name =  name
+        # self.Capital = capital
+        # self.Leader =  leader
+        #这是私有字段。外部无法直接访问。
+        # self.__Thailand = flag
+    # 动态方法，对象可以访问类
+    # def sports_meet(self):
+    #         print self.Name + '正在开运动会'
+    # 这是调用私用字段，来让外界可以访问私用字段。
+    # def show(self):
+    #     print  self.__Thailand
+    # 私有方法,直接是访问不到的，需通过内部调用他才可以访问到。
+    # def __siyou(self):
+    #     print "私有方法"
+
+    # 只读
+    # @property
+    # def Foo(self):
+    #     self.__siyou()
+    #
+
+    # 可以改的装饰器
+    # @Thaliand.setter
+    # def Thaliand(self,value):
+    #     self.__Thailand= value
+
+    # 为什使用私用方法， 1.简化了模式，提供给外部一个简洁的工具，
+    # 2. 为了 安全。不允许让外界访问。
+    # 在python中写的私有方法，虽不能直接可以访问私有方法，但是可以通过一个
+    # 共有的方法来调用私有方法。也可以这样
+    # 对象._类名__私有方法()
+
+
+
+
+    #动态方法转静态方法共两步
+    # 一般用在大量执行重复的方法的事时候
+    # 用静态 1.节省内存，2.快速创建(不用创建对象)
+    #1.加一个装饰器，Python自带的
+    # @staticmethod
+    #2.把Foo里面的self去掉。
+    # def Foo():
+    #     print "动态转静态"
+
+    # 特性，这个也是python自带的。
+    #
+    # @property
+    # def Bar(self):
+    #     print  "特性"
+
+
+# 赋值，这里的SD叫做 对象
+# japan = Provience('日本','济南','李四',True)
+# SD = Provience('山东','济南','李四')
+
+# japan.show()
+# japan.Foo()
+# japan = Provience('日本','济南','李四',True)
+# print japan.Thaliand
+# japan.Thaliand =  False
+# print japan.Thaliand
+
+# 调用
+# print  SD.memo
+# print  SD.Name
+# print  Provience.memo
+# 这样是不能访问的静态的类不能访问动态字段。
+# print  Provience.
+
+# 对象可以访问静态字段，尽量减少这么访问。
+# print SD.memo
+# SD.sports_meet()
+# Provience.Foo()
+# 调用特性，需要用'.' 来访问。
+# SD.Bar
+
+# 函数式编程和面向对象的静态方法 运行是一样的，都可以实现。
+
+'''
+# 有个问题没有解决 是setter那里
+class test1:
+    def __init__(self):
+        self.__praviate = '测试 1'
+    @property
+    def show(self):
+        return  self.__praviate
+
+class test2(object):
+    def __init__(self):
+        self.__pravite = '测试 2'
+    @show.setter
+    def show(self):
+        return  self.__pravite
+t1 =  test1()
+print  t1.show
+t1.show =  '改变'
+print t1.show
+
+t2 = test2()
+print t2.show
+t2.show =  '2的改变'
+print t2.show
+'''
+
+class Foo:
+    # 这就是构造函数
+    def __init__(self):
+        print "这个就是构造函数"
+
+    # 析构函数，一般用不到。
+    def  __del__(self):
+        print "解释器要销毁的"
+
+F1 = Foo()
